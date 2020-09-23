@@ -2,7 +2,7 @@
     require "header.php";
 ?>
 
-    <main>
+    <main> 
         <div class="wrapper-main">
             <section class="section-default">
                 <h1>Signup</h1>
@@ -10,7 +10,7 @@
                     <input type="text" name="uid" placeholder="Username" >
                     <input type="text" name="mail" placeholder="E-mail" >
                     <input type="password" name="pwd" placeholder="Password" >
-                    <input type="password" name="pwd" placeholder="Repeat Password" >
+                    <input type="password" name="pwd-repeat" placeholder="Repeat Password" >
                     <button type="submit" name="signup-submit">Signup</button>
                 </form>
             </section>

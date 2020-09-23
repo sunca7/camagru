@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +21,7 @@
             <li> <a href="#">Contact</a></li>
         </ul>
         <div>
-            <form action="includes/login.inc.php" method="post">
+            <form action="/includes/login.inc.php" method="post">
                 <input type="text" name="mailuid" value="" placeholder="Username/E-mail...">
                 <input type="password" name="pwd" value="" placeholder="Password...">
                 <button type="submit" name="login-submit">Login</button>
