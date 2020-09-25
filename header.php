@@ -8,16 +8,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camagru</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     
 <header>
-    <nav>
-        <a href="#">
-            <img src="img/insta.png" alt="logo">
-        </a>
-        <ul>
+    <a class="header-logo" href="index.php">
+        <img src="img/insta.png" alt="logo">
+    </a>
+    <nav class="nav-header-main">
+        <ul class="nav__links">
             <li> <a href="index.php">Home</a></li>
             <li> <a href="#">Contact</a></li>
         </ul>
