@@ -4,18 +4,16 @@
 
 if (isset($_POST['login-submit'])) {
 
-    require 'dbc.inc.php';
+    require 'dbh.inc.php';
 
     $mailuid = $_POST['mailuid'];
     $password = $_POST['pwd'];
 
-    // echo '<p> 18 </p>';
-    
     if (empty($mailuid) || empty($password)) {
         header("Location: /index.php?error=emptyfiles");
         exit();
     } else {
-        $sql = "SELECT * FROM users WHERE uidUsers=? OR emailUsers=?;";
+        $sql = "SELECT * FROM users WHERE uidUsers=? OR emailUsers=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: /index.php?error=sqlerror");
