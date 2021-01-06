@@ -1,0 +1,15 @@
+{
+    "name": "skim/camagru",
+    "authors": [
+        {
+            "name": "Sunah KIM",
+            "email": "sunakim@student.42.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {}
+}

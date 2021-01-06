@@ -13,12 +13,12 @@
 <body>
     
 <header>
-    <a class="header-logo" href="index.php">
+    <a class="header-logo" href="public/index.php">
         <img src="img/insta.png" alt="logo">
     </a>
     <nav class="nav-header-main">
         <ul class="nav__links">
-            <li> <a href="index.php">Home</a></li>
+            <li> <a href="public/index.php">Home</a></li>
             <li> <a href="#">Contact</a></li>
         </ul>
     </nav>
