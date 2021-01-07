@@ -14,20 +14,23 @@ class Router
         $this->response = $response;
     }
 
+    // uri with get method -> callback   ex) get with /user
     public function get($path, $callback)
     {
         $this->routes['get'][$path] = $callback;
     }
 
+    // uri with post method -> callback, ex) post with /user
     public function post($path, $callback)
     {
         $this->routes['post'][$path] = $callback;
     }
 
+    // Find path, method => execute callback => render view
     public function resolve()
     {
         $path = $this->request->getPath();
-        $method = $this->request->getMethod();
+        $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
@@ -37,27 +40,39 @@ class Router
         if (is_string($callback)){
             return $this->renderView($callback);
         }
-        return call_user_func($callback);
+
+        // $callback can be an array
+        return call_user_func($callback, $this->request);
     }
 
-    public function renderView($view)
+    public function renderView($view, $params = [])
     {
+        // layout is 안변하는 ㅃㅕ대
         $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view);
+
+        // view 변하는 내용
+        $viewContent = $this->renderOnlyView($view, $params);
+
+        // 뼈대 안에 변해는 내용 집어 넣
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
-    //main.php = nav + footer?
+    //main.php = nav + footer?기 뼈대
     protected function layoutContent()
     {
+        //뼈대를 읽어 string으로 변환하기
         ob_start();
         include_once Application::$ROOT_DIR."/views/layouts/main.php";
         return ob_get_clean();
     }
 
     //real content
-    protected function renderOnlyView($view)
+    protected function renderOnlyView($view, $params = [])
     {
+        //내용에 param 추가하기
+        foreach ($params as $key => $value) {
+            $$key = $value;
+        }
         ob_start();
         include_once __DIR__."/../views/$view.php";
         return ob_get_clean();

@@ -7,11 +7,11 @@
 <form action="" method="post">
     <div class="mb-3">
         <label class="form-label">Subject</label>
-        <input type="text" class="form-control">
+        <input name="subject"  type="text" class="form-control">
     </div>
     <div class="mb-3">
         <label class="form-label">Email</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
     <div class="mb-3">
