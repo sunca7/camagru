@@ -61,7 +61,7 @@ abstract class Model
         foreach ($params as $key => $value) {
             $message = str_replace("{{$key}}", $value, $message);
         }
-        $this->errors[$attribute][] = $message;
+        $this->errors[$attribute][] = $message; // 두번째 array에 순서대로 넣는거
     }
 
     public function errorMessages()
@@ -73,5 +73,15 @@ abstract class Model
             self::RULE_MAX => 'Max length of this filed must be {max}',
             self::RULE_MATCH => 'This filed must be same as {match}',
         ];
+    }
+
+    public function hasError($attribute)
+    {
+        return $this->errors[$attribute] ?? false;
+    }
+
+    public function getFirstError($attribute)
+    {
+        return $this->errors[$attribute][0] ?? false;
     }
 }
