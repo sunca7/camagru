@@ -1,16 +1,16 @@
 <?php
 
-require_once __DIR__.'/vendor/autoload.php';
-require_once __DIR__.'/config/database.php';
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/config/database.php';
 
 //        echo '<pre>';
 //        var_dump($callback);
 //        echo '<pre>';
 //        exit;
 
-use app\core\Application;
-use app\controllers\SiteControllers;
 use app\controllers\AuthController;
+use app\controllers\SiteControllers;
+use app\core\Application;
 
 $config = [
     'db' => [

@@ -2,18 +2,18 @@
 
 namespace app\core;
 
-use \PDO;
+use PDO;
 
 class Database
 {
-    public \PDO $pdo;
+    public PDO $pdo;
 
     public function __construct(array $config)
     {
         $dsn = $config['dsn'] ?? '';
         $user = $config['user'] ?? '';
         $password = $config['password'] ?? '';
-        $this->pdo = new \PDO($dsn, $user, $password);
+        $this->pdo = new PDO($dsn, $user, $password);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
@@ -23,7 +23,7 @@ class Database
         $appliedMigrations = $this->getAppliedMigrations();
 
         $newMigrations = [];
-        $files = scandir(Application::$ROOT_DIR.'/migrations');
+        $files = scandir(Application::$ROOT_DIR . '/migrations');
         $toApplyMigrations = array_diff($files, $appliedMigrations);
 
         foreach ($toApplyMigrations as $migration) {
@@ -31,7 +31,7 @@ class Database
                 continue;
             }
 
-            require_once Application::$ROOT_DIR.'/migrations/'.$migration;
+            require_once Application::$ROOT_DIR . '/migrations/' . $migration;
             $className = pathinfo($migration, PATHINFO_FILENAME);
             $this->log("Applying migration $migration");
             $instance = new $className;
@@ -62,7 +62,12 @@ class Database
         $stmt = $this->pdo->prepare("SELECT migration FROM migrations");
         $stmt->execute();
 
-        return $stmt->fetchAll(\PDO::FETCH_COLUMN);
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
+
+    protected function log($message)
+    {
+        echo '[' . date('Y-m-d H:i:s') . '] - ' . $message . PHP_EOL;
     }
 
     public function saveMigrations(array $migrations)
@@ -74,8 +79,8 @@ class Database
         $stmt->execute();
     }
 
-    protected function log($message)
+    public function prepare($sql)
     {
-        echo '[' .date('Y-m-d H:i:s') . '] - ' . $message . PHP_EOL;
+        return $this->pdo->prepare($sql);
     }
 }

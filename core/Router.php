@@ -1,5 +1,6 @@
 <?php
 
+
 namespace app\core;
 
 class Router
@@ -37,7 +38,7 @@ class Router
             $this->response->setStatusCode(404);
             return $this->renderView("_404");
         }
-        if (is_string($callback)){
+        if (is_string($callback)) {
             return $this->renderView($callback);
         }
 
@@ -62,7 +63,8 @@ class Router
     {
         //뼈대를 읽어 string으로 변환하기
         ob_start();
-        include_once Application::$ROOT_DIR."/views/layouts/main.php";
+        include_once Application::$ROOT_DIR . "/views/layouts/main.php";
+        include_once Application::$ROOT_DIR . "/views/layouts/main.php";
         return ob_get_clean();
     }
 
@@ -74,7 +76,7 @@ class Router
             $$key = $value;
         }
         ob_start();
-        include_once __DIR__."/../views/$view.php";
+        include_once __DIR__ . "/../views/$view.php";
         return ob_get_clean();
     }
 }
